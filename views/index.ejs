@@ -6,20 +6,23 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
   <body ng-controller="SoundController as sc">
-    <div id='maincontainer'>
-      <div id='leftcontainer'>
-        <input type="text" ng-model="sc.text" ng-keyup="sc.fetch()"/>
-        <iframe width="100%" height="100" scrolling="no" frameborder="no" src="{{sc.returntext}}"></iframe>
-      </div>
-      <div id='rightcontainer'>
-        <input type="text" ng-model="sc.text2" ng-keyup="sc.fetch2()"/>
-        <iframe width="100%" height="100" scrolling="no" frameborder="no" src="{{sc.returntext2}}"></iframe>
-      </div>
-      <button value="Find Playlists Containing Both Songs" ng-click="sc.findPlaylists()">Find Playlists Containing Both Songs</button>
+    <form id='form' action="/" method="post">
+      <div id='maincontainer'>
+        <div id='leftcontainer'>
+          <input name='track1' ng-model="sc.text" ng-keyup="sc.fetch()"/>
+          <iframe width="100%" height="100" scrolling="no" frameborder="no" src="{{sc.returntext}}"></iframe>
+        </div>
+        <div id='rightcontainer'>
+          <input name='track2' ng-model="sc.text2" ng-keyup="sc.fetch2()"/>
+          <iframe width="100%" height="100" scrolling="no" frameborder="no" src="{{sc.returntext2}}"></iframe>
+        </div>
+        <button value="Find Playlists Containing Both Songs" ng-click="sc.findPlaylists()">Find Playlists Containing Both Songs</button>
 
-      <div>
-        {{sc.playlists1}}
-      </div>
+        <div>
+          {{sc.playlists1}}
+        </div>
+      <input form = 'form' type="submit" value="Submit"/>
+    </form>
 
   </div>
   </body>

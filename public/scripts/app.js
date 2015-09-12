@@ -3,8 +3,8 @@ function start() {
   var app = angular.module('soundcloud',[]);
   app.controller('SoundController', ['$scope', '$http', '$sce', function($scope, $http, $sce) {
 
-    this.returntext = '';
-    this.returntext2 = '';
+    this.text = 'd.a.n.c.e.';
+    this.text2 = 'mgmt';
 
     this.song1trackID = '';
     this.song2trackID = '';
@@ -32,6 +32,15 @@ function start() {
     this.fetch2();
 
   this.findPlaylists = function(){
+
+    $http({
+      url: '/find/'+that.song1trackID+'/'+that.song2trackID,
+      // url: '/find/1/2',
+      method: 'get'
+    })
+     .success(function(response) {
+      });
+   }
 
 //     $.ajax({
 //     url: 'https://api-v2.soundcloud.com/users/13082950/likes?limit=10&offset=0&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
@@ -68,9 +77,6 @@ function start() {
     // .error(function(response) {
     //          console.table(response);
     //       })
-
-
-  }
 
 
 
