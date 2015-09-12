@@ -1,0 +1,23 @@
+body {
+  box-sizing: border-box;
+}
+
+#maincontainer {
+  width: 100%;
+  height: auto;
+}
+
+#leftcontainer {
+  width: 49%;
+  display: inline-block;
+}
+
+#rightcontainer {
+  width: 49%;
+  display: inline-block;
+}
+
+button {
+
+
+}
