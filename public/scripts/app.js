@@ -4,7 +4,7 @@ function start() {
   app.controller('SoundController', ['$scope', '$http', '$sce', function($scope, $http, $sce) {
 
     this.text = 'd.a.n.c.e.';
-    this.text2 = 'mgmt';
+    this.text2 = 'mgmt justice remix';
 
     this.song1trackID = '';
     this.song2trackID = '';
@@ -35,7 +35,6 @@ function start() {
 
     $http({
       url: '/find/'+that.song1trackID+'/'+that.song2trackID,
-      // url: '/find/1/2',
       method: 'get'
     })
      .success(function(response) {
