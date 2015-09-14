@@ -17,8 +17,6 @@
   },
   "homepage": "https://github.com/turnerniles/SCPlaylistFinderAngular",
   "dependencies": {
-    "body-parser": "^1.13.3",
-    "ejs": "^2.3.4",
     "express": "^4.13.3",
     "request": "^2.61.0",
   }

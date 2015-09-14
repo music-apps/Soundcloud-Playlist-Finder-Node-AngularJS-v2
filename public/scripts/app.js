@@ -18,10 +18,6 @@ function start() {
 
     var that = this;
 
-    // this.setPage = function (pageNo) {
-    //   that.currentPage = pageNo;
-    // };
-
       this.setPage = function (pageNo) {
       that.currentPage = pageNo;
     };
@@ -30,9 +26,6 @@ function start() {
        console.log('Page changed to: ' + that.currentPlaylist);
        that.currentPlaylist = $sce.trustAsResourceUrl("https://w.soundcloud.com/player/?url="+that.playlists[that.currentPage]);
      };
-
-
-
 
     this.fetch = function() {
      $http.get("https://api.soundcloud.com/tracks?"+'c8b9faf87e3e5a145d75eff2e4ca898c'+"&q="+this.text)
