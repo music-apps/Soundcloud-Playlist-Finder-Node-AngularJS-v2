@@ -3,8 +3,8 @@ function start() {
   var app = angular.module('soundcloud',[]);
   app.controller('SoundController', ['$scope', '$http', '$sce', function($scope, $http, $sce) {
 
-    this.text = 'd.a.n.c.e.';
-    this.text2 = 'mgmt justice remix';
+    this.text = 'jai wolf indian summer';
+    this.text2 = 'something about you odesza';
 
     this.song1trackID = '';
     this.song2trackID = '';
@@ -38,7 +38,13 @@ function start() {
       method: 'get'
     })
      .success(function(response) {
-      });
+       console.log('response');
+       console.log(response);
+       console.log('response');
+      })
+      .error(function(error){
+        console.log(error);
+      })
    }
 
 //     $.ajax({
@@ -76,8 +82,6 @@ function start() {
     // .error(function(response) {
     //          console.table(response);
     //       })
-
-
 
   }]);
 }

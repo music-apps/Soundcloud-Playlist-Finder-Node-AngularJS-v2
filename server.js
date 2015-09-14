@@ -2,7 +2,6 @@ var express =        require('express'),
     server =         express(),
     ejs =            require('ejs'),
     bodyParser =     require('body-parser'),
-    async =          require('async'),
     request =        require('request');
 
 //Use ./public for static css and js files
@@ -28,8 +27,8 @@ server.get('/find/:paramID1/:paramID2', function (req, res) {
 
   var id1 = req.params.paramID1,
   id2 = req.params.paramID2,
-  song1 = null,
-  song2 = null,
+  song1 = [],
+  song2 = [],
   toCheck = null,
   toCheckAgainst = null,
   //Defining the array to contain the results
@@ -37,8 +36,12 @@ server.get('/find/:paramID1/:paramID2', function (req, res) {
 
   function playlistOps() {
 
-    setTimeout(function(){longest(song1,song2);},3000)
-    setTimeout(function(){containingBoth(toCheck,toCheckAgainst);},4000)
+    setTimeout(function(){longest(song1,song2);},6000)
+    setTimeout(function(){containingBoth(toCheck,toCheckAgainst);},7000)
+    // setTimeout(function(){res.status(req.session.state).json({data:playlistsContainingBoth});},8000)
+    // setTimeout(function(){res.status(200).json({data:playlistsContainingBoth});},8000)
+    setTimeout(function(){res.json(200, {data:'balls'});},8000)
+
   }
 
   function containingBoth(toCheck, toCheckAgainst){
@@ -72,13 +75,12 @@ server.get('/find/:paramID1/:paramID2', function (req, res) {
 
   console.log(id1,id2);
 
-  async.parallel([
     request.get({
       url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=100&offset=100&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
     },
       function(error, response, body) {
         var bod = JSON.parse(body);
-        song1 = bod['collection'];
+        song1.push.apply(song1, bod['collection']);
       }),
       request.get({
         url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=100&offset=100&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
@@ -93,7 +95,7 @@ server.get('/find/:paramID1/:paramID2', function (req, res) {
       },
         function(error, response, body, dogbreath) {
           var bod = JSON.parse(body);
-          song2 = bod['collection'];
+          song2.push.apply(song2, bod['collection']);
         }),
       request.get({
         url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=100&offset=100&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
@@ -104,8 +106,7 @@ server.get('/find/:paramID1/:paramID2', function (req, res) {
         })
 
 
-    ], playlistOps()
-  );
+  playlistOps()
 })
 
 
