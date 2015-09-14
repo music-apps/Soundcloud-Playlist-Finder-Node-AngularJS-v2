@@ -1,6 +1,6 @@
 function start() {
 
-  var app = angular.module('soundcloud',[]);
+  var app = angular.module('soundcloud',['ui.bootstrap']);
   app.controller('SoundController', ['$scope', '$http', '$sce', function($scope, $http, $sce) {
 
     this.text = 'jai wolf indian summer';
@@ -10,9 +10,29 @@ function start() {
     this.song2trackID = '';
 
     this.playlists = '';
-    this.playlists1 = '';
+    this.currentPlaylist = '';
+    this.numOfPlaylists = 0;
+
+    this.currentPage = 1;
+    this.itemsPerPage = 1;
 
     var that = this;
+
+    // this.setPage = function (pageNo) {
+    //   that.currentPage = pageNo;
+    // };
+
+      this.setPage = function (pageNo) {
+      that.currentPage = pageNo;
+    };
+
+     this.pageChanged = function() {
+       console.log('Page changed to: ' + that.currentPlaylist);
+       that.currentPlaylist = $sce.trustAsResourceUrl("https://w.soundcloud.com/player/?url="+that.playlists[that.currentPage]);
+     };
+
+
+
 
     this.fetch = function() {
      $http.get("https://api.soundcloud.com/tracks?"+'c8b9faf87e3e5a145d75eff2e4ca898c'+"&q="+this.text)
@@ -39,51 +59,14 @@ function start() {
       method: 'get'
     })
      .success(function(response) {
-       console.log(response);
        that.playlists = response.data;
-       that.playlists1 = $sce.trustAsResourceUrl("https://w.soundcloud.com/player/?url="+response.data[0]);
-       console.log(that.playlists[0]);
+       that.currentPlaylist = $sce.trustAsResourceUrl("https://w.soundcloud.com/player/?url="+that.playlists[0]);
+       that.numOfPlaylists = response.data.length;
       })
       .error(function(error){
         console.log(error);
       })
    }
-
-//     $.ajax({
-//     url: 'https://api-v2.soundcloud.com/users/13082950/likes?limit=10&offset=0&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-//     dataType: 'json',
-//     data: {'my':'data'},
-//     type: 'POST'
-// }).fail(function($xhr) {
-//     var data = $xhr.responseJSON;
-//     console.log(data);
-// });
-
-    // $.ajax({
-    //        type:  'GET',
-    //        url:   'https://api-v2.soundcloud.com/tracks/102113299/related?anon_user_id=36331428&limit=10&offset=0&linked_partitioning=1',
-    //        dataType: 'json',
-    //        success: function(error, data){
-    //        },
-    //        error: function(xhr, textStatus, errorThrown) {
-    //          console.table(errorThrown);
-    //       }
-    //     });
-
-//     $.getJSON('https://api-v2.soundcloud.com/tracks/'+that.song1trackID+'/playlists?limit=100&offset=100&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
-//     function( data ) {
-//         console.log(data);
-// });
-
-    // $http.jsonp('https://api-v2.soundcloud.com/tracks/'+that.song1trackID+'/playlists?limit=100&offset=100&client_id=c8b9faf87e3e5a145d75eff2e4ca898c')
-    // .success(function(response) {
-    //
-    //     that.playlists1 = response;
-    //
-    // })
-    // .error(function(response) {
-    //          console.table(response);
-    //       })
 
   }]);
 }
