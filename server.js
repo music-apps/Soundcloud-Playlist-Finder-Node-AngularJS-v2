@@ -16,11 +16,11 @@ server.get('/', function(req, res){
 })
 
 // POST
-server.post('/', bodyParser.json(), function (req, res) {
-  var data = req.body;
-  console.log('hi');
-  console.log(data);
-});
+// server.post('/', bodyParser.json(), function (req, res) {
+//   var data = req.body;
+//   console.log('hi');
+//   console.log(data);
+// });
 
 // FIND
 server.get('/find/:paramID1/:paramID2', function (req, res) {
@@ -38,9 +38,7 @@ server.get('/find/:paramID1/:paramID2', function (req, res) {
 
     setTimeout(function(){longest(song1,song2);},6000)
     setTimeout(function(){containingBoth(toCheck,toCheckAgainst);},7000)
-    // setTimeout(function(){res.status(req.session.state).json({data:playlistsContainingBoth});},8000)
-    // setTimeout(function(){res.status(200).json({data:playlistsContainingBoth});},8000)
-    setTimeout(function(){res.json(200, {data:'balls'});},8000)
+    setTimeout(function(){res.json(200, {data: playlistsContainingBoth});},8000)
 
   }
 
@@ -50,7 +48,10 @@ server.get('/find/:paramID1/:paramID2', function (req, res) {
     for(var i=0;i<toCheck.length;i+=1){
       for(var j=0;j<toCheckAgainst.length;j+=1){
         if (toCheck[i]['uri'] === toCheckAgainst[j]['uri']) {
-          playlistsContainingBoth.push(toCheck[i]['uri'])
+          playlistsContainingBoth.push(toCheck[i]['uri']);
+          console.log('pushing');
+          console.log(toCheck[i]['uri']);
+          console.log(toCheckAgainst[j]['uri']);
         }
       }
     }
@@ -76,7 +77,7 @@ server.get('/find/:paramID1/:paramID2', function (req, res) {
   console.log(id1,id2);
 
     request.get({
-      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=100&offset=100&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
+      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=100&offset=0&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
     },
       function(error, response, body) {
         var bod = JSON.parse(body);
@@ -91,7 +92,7 @@ server.get('/find/:paramID1/:paramID2', function (req, res) {
         }),
 
       request.get({
-        url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=100&offset=100&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
+        url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=100&offset=0&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
       },
         function(error, response, body, dogbreath) {
           var bod = JSON.parse(body);

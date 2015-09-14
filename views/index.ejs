@@ -6,7 +6,6 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
   <body ng-controller="SoundController as sc">
-    <form id='form' action="/" method="post">
       <div id='maincontainer'>
         <div id='leftcontainer'>
           <input name='track1' ng-model="sc.text" ng-keyup="sc.fetch()"/>
@@ -19,9 +18,8 @@
         <button value="Find Playlists Containing Both Songs" ng-click="sc.findPlaylists()">Find Playlists Containing Both Songs</button>
 
         <div>
-          {{sc.playlists1}}
+          <iframe id="sc-widget" src="{{sc.playlists1}}" width="100%" height="465" scrolling="no" frameborder="no"></iframe>
         </div>
-    </form>
 
   </div>
   </body>

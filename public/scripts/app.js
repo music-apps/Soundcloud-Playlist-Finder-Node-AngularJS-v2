@@ -9,6 +9,7 @@ function start() {
     this.song1trackID = '';
     this.song2trackID = '';
 
+    this.playlists = '';
     this.playlists1 = '';
 
     var that = this;
@@ -38,9 +39,10 @@ function start() {
       method: 'get'
     })
      .success(function(response) {
-       console.log('response');
        console.log(response);
-       console.log('response');
+       that.playlists = response.data;
+       that.playlists1 = $sce.trustAsResourceUrl("https://w.soundcloud.com/player/?url="+response.data[0]);
+       console.log(that.playlists[0]);
       })
       .error(function(error){
         console.log(error);
