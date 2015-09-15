@@ -3,8 +3,8 @@ function start() {
   var app = angular.module('soundcloud',['ui.bootstrap']);
   app.controller('SoundController', ['$scope', '$http', '$sce', function($scope, $http, $sce) {
 
-    this.text = 'Le P - History (Instrumental Version)';
-    this.text2 = 'Icona Pop - All Night (TheFatRat Remix)';
+    this.text = 'Daft Punk - Random Access Memories (Vanderway Edit)';
+    this.text2 = 'Phoenix - Lisztomania (Shook Remix)';
 
     this.song1trackID = '';
     this.song2trackID = '';
@@ -28,7 +28,7 @@ function start() {
 
      this.pageChanged = function() {
        console.log('Page changed to: ' + that.currentPlaylist);
-       that.currentPlaylist = $sce.trustAsResourceUrl("https://w.soundcloud.com/player/?url="+(that.playlists[that.currentPage]-1));
+       that.currentPlaylist = $sce.trustAsResourceUrl("https://w.soundcloud.com/player/?url="+that.playlists[(that.currentPage-1)]);
      };
 
     this.fetch = function() {
