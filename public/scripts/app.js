@@ -15,8 +15,12 @@ function start() {
 
     this.currentPage = 1;
     this.itemsPerPage = 1;
+    this.pagiShow = false;
+
+    this.progressValue = 0;
 
     var that = this;
+    this.loadShow = {'visibility': 'hidden'};
 
       this.setPage = function (pageNo) {
       that.currentPage = pageNo;
@@ -46,7 +50,9 @@ function start() {
     this.fetch2();
 
   this.findPlaylists = function(){
-
+    this.loadShow = {'visibility': 'visible'};
+    document.querySelector('.progress-bar').classList.add('progress-bar2');
+    this.progressValue = 100;
     $http({
       url: '/find/'+that.song1trackID+'/'+that.song2trackID,
       method: 'get'
@@ -55,6 +61,9 @@ function start() {
        that.playlists = response.data;
        that.currentPlaylist = $sce.trustAsResourceUrl("https://w.soundcloud.com/player/?url="+that.playlists[0]);
        that.numOfPlaylists = response.data.length;
+       that.pagiShow = true;
+       that.loadShow = {'visibility': 'hidden'};
+       that.progressValue = 0;
       })
       .error(function(error){
         console.log(error);
