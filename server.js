@@ -7,11 +7,6 @@ server.use(express.static("public"));
 
 var PORT = process.env.PORT || 1337;
 
-//ROUTES
-// server.get('/', function(req, res){
-//   res.render('index.html', {});
-// })
-
 // FIND
 server.get('/find/:paramID1/:paramID2', function (req, res) {
 
