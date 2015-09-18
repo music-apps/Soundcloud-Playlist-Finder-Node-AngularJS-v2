@@ -21,28 +21,45 @@ server.get('/find/:paramID1/:paramID2', function (req, res) {
 
   function playlistOps() {
     setTimeout(function(){longest(song1,song2);},6000)
-    setTimeout(function(){containingBoth(toCheck,toCheckAgainst);},7000)
+    setTimeout(function(){containingBoth(toCheck,toCheckAgainst);},6500)
     setTimeout(function(){res.json(200, {data: playlistsContainingBoth});},8000)
   }
 
   function containingBoth(toCheck, toCheckAgainst){
 
-    //Check all the playlists in the to_check array against the to_check_against array
-    for(var i=0;i<toCheck.length;i+=1){
-      for(var j=0;j<toCheckAgainst.length;j+=1){
-        if (toCheck[i]['uri'] === toCheckAgainst[j]['uri']) {
-          playlistsContainingBoth.push(toCheck[i]['uri']);
-          console.log('pushing');
-          console.log(toCheck[i]['uri']);
-          console.log(toCheckAgainst[j]['uri']);
-        }
-      }
-    }
-    console.log(playlistsContainingBoth);
-  }
+       var values = {};
+       var i, current;
+       for (i = 0; i < toCheckAgainst.length; i++) {
+           current = toCheckAgainst[i]['uri'];
+           values[current] = true;
+       }
+       for (i = 0; i < toCheck.length; i++) {
+           current = toCheck[i]['uri'];
+           if (values[current]) {
+               playlistsContainingBoth.push(current);
+           }
+       }
+         console.log(playlistsContainingBoth);
+   }
 
-  function longest(song1, song2){
+    //Check all the playlists in the to_check array against the to_check_against array
+    // function containingBoth(toCheck, toCheckAgainst){
+  //   for(var i=0;i<toCheck.length;i+=1){
+  //     for(var j=0;j<toCheckAgainst.length;j+=1){
+  //       if (toCheck[i]['uri'] === toCheckAgainst[j]['uri']) {
+  //         playlistsContainingBoth.push(toCheck[i]['uri']);
+  //         console.log('pushing');
+  //         console.log(toCheck[i]['uri']);
+  //         console.log(toCheckAgainst[j]['uri']);
+  //       }
+  //     }
+  //   }
+  //   console.log(playlistsContainingBoth);
+  // }
+
+
   //Logic to check which collection of playlists is longer
+function longest(song1, song2){
   if (song1.length > song2.length) {
       toCheck = song1;
       toCheckAgainst = song2;
