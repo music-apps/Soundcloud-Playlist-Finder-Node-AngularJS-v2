@@ -32,7 +32,7 @@ function start() {
      };
 
     this.fetch = function() {
-     $http.get("https://api.soundcloud.com/tracks?"+'c8b9faf87e3e5a145d75eff2e4ca898c'+"&q="+this.text)
+     $http.get("https://api.soundcloud.com/tracks?q="+this.text+'&client_id=c8b9faf87e3e5a145d75eff2e4ca898c')
       .success(function(response) {
         that.song1trackID = response[0].id;
         that.returntext = $sce.trustAsResourceUrl("https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/"+response[0].id+"&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;buying=false&amp;sharing=false&amp;liking=false&amp;show_user=true&amp;show_reposts=false&amp;visual=false");
@@ -46,7 +46,7 @@ function start() {
     this.fetch();
 
     this.fetch2 = function() {
-     $http.get("https://api.soundcloud.com/tracks?"+'c8b9faf87e3e5a145d75eff2e4ca898c'+"&q="+this.text2)
+      $http.get("https://api.soundcloud.com/tracks?q="+this.text2+'&client_id=c8b9faf87e3e5a145d75eff2e4ca898c')
       .success(function(response) {
         that.song2trackID = response[0].id;
         that.returntext2 = $sce.trustAsResourceUrl("https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/"+response[0].id+"&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;buying=false&amp;sharing=false&amp;liking=false&amp;show_user=true&amp;show_reposts=false&amp;visual=false");
