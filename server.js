@@ -1,6 +1,7 @@
 var express =        require('express'),
     server =         express(),
-    request =        require('request');
+    request =        require('request'),
+    async =          require('async');
 
 //Use ./public for static css and js files
 server.use(express.static("public"));
