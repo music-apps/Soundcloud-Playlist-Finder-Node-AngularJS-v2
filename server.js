@@ -1,8 +1,7 @@
 var express =        require('express'),
     server =         express(),
     request =        require('request'),
-    async =          require('async'),
-    http =           require('http');
+    async =          require('async');
 
 //Use ./public for static css and js files
 server.use(express.static("public"));
@@ -22,10 +21,10 @@ server.get('/find/:paramID1/:paramID2', function (req, res) {
   playlistsContainingBoth = [];
 
   function playlistOps() {
-    setTimeout(function(){console.log(song1.length);},15000)
-    setTimeout(function(){longest(song1,song2);},6000)
-    setTimeout(function(){containingBoth(toCheck,toCheckAgainst);},6500)
-    setTimeout(function(){res.json(200, {data: playlistsContainingBoth});},8000)
+    // setTimeout(function(){console.log(song1.length);},20000)
+    // setTimeout(function(){longest(song1,song2);},22000)
+    // setTimeout(function(){containingBoth(toCheck,toCheckAgainst);},24000)
+    // setTimeout(function(){res.json(200, {data: playlistsContainingBoth});},26000)
   }
 
   function containingBoth(toCheck, toCheckAgainst){
@@ -80,254 +79,376 @@ function longest(song1, song2){
 
   console.log(id1,id2);
 
-//Song1 Calls
 
-async.parallel({
-sc1: function(callback){
-  request.get({
-    url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=0&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-  },
-    function(error, response, body) {
-      console.log('sc1');
-      // var bod = JSON.parse(body);
-      // song1.push.apply(song1, bod['collection']);
-      callback(null, body);
-    })
-
-  // http.get("http://www.google.com", function(res){
-  //   console.log("google done");
-  //   callback(null, res.statusCode);
-  // })
-
-},
-sc2: function(callback){
-  request.get({
-    url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=175&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-  },
-    function(error, response, body) {
-      console.log('sc2');
-      // var bod = JSON.parse(body);
-      // song1.push.apply(song1, bod['collection']);
-      callback(null, body);
-    })
-  },
-sc3: function(callback){
-  request.get({
-    url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=350&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-  },
-    function(error, response, body) {
-      console.log('sc3');
-      // var bod = JSON.parse(body);
-      // song1.push.apply(song1, bod['collection']);
-      callback(null, body);
-    })
-  },
-sc4: function(callback){
-  request.get({
-    url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=525&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-  },
-    function(error, response, body) {
-      console.log('sc4');
-      // var bod = JSON.parse(body);
-      // song1.push.apply(song1, bod['collection']);
-      callback(null, body);
-    })
-  },
-sc5: function(callback){
-  request.get({
-    url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=700&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-  },
-    function(error, response, body) {
-      console.log('sc5');
-      // var bod = JSON.parse(body);
-      // song1.push.apply(song1, bod['collection']);
-      callback(null, body);
-    })
-  },
-sc6: function(callback){
-  request.get({
-    url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=875&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-  },
-    function(error, response, body) {
-      console.log('sc6');
-      // var bod = JSON.parse(body);
-      // song1.push.apply(song1, bod['collection']);
-      callback(null, body);
-    })
-  },
-sc7: function(callback){
-  request.get({
-    url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=1050&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-  },
-    function(error, response, body) {
-      console.log('sc7');
-      // var bod = JSON.parse(body);
-      // song1.push.apply(song1, bod['collection']);
-      callback(null, body);
-    })
-  },
-  sc8: function(callback){
+//Song Calls
+function gatherSongs(){
+  async.parallel({
+  sc11: function(callback){
     request.get({
-      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=1225&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=0&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
     },
       function(error, response, body) {
-        console.log('sc8');
+        console.log('sc1');
         // var bod = JSON.parse(body);
         // song1.push.apply(song1, bod['collection']);
         callback(null, body);
       })
-    }
+
+    // http.get("http://www.google.com", function(res){
+    //   console.log("google done");
+    //   callback(null, res.statusCode);
+    // })
+
   },
-  function(err, results) {
-    if(!err){
-      var res1 = JSON.parse(results.sc1);
-      song1.push.apply(song1, res1['collection']);
+  sc12: function(callback){
+    request.get({
+      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=175&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+    },
+      function(error, response, body) {
+        console.log('sc12');
+        // var bod = JSON.parse(body);
+        // song1.push.apply(song1, bod['collection']);
+        callback(null, body);
+      })
+    },
+  sc13: function(callback){
+    request.get({
+      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=350&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+    },
+      function(error, response, body) {
+        console.log('sc13');
+        // var bod = JSON.parse(body);
+        // song1.push.apply(song1, bod['collection']);
+        callback(null, body);
+      })
+    },
+  sc14: function(callback){
+    request.get({
+      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=525&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+    },
+      function(error, response, body) {
+        console.log('sc14');
+        // var bod = JSON.parse(body);
+        // song1.push.apply(song1, bod['collection']);
+        callback(null, body);
+      })
+    },
+  sc15: function(callback){
+    request.get({
+      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=700&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+    },
+      function(error, response, body) {
+        console.log('sc15');
+        // var bod = JSON.parse(body);
+        // song1.push.apply(song1, bod['collection']);
+        callback(null, body);
+      })
+    },
+  sc16: function(callback){
+    request.get({
+      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=875&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+    },
+      function(error, response, body) {
+        console.log('sc16');
+        // var bod = JSON.parse(body);
+        // song1.push.apply(song1, bod['collection']);
+        callback(null, body);
+      })
+    },
+  sc17: function(callback){
+    request.get({
+      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=1050&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+    },
+      function(error, response, body) {
+        console.log('sc17');
+        // var bod = JSON.parse(body);
+        // song1.push.apply(song1, bod['collection']);
+        callback(null, body);
+      })
+    },
+    sc18: function(callback){
+      request.get({
+        url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=1225&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+      },
+        function(error, response, body) {
+          console.log('sc18');
+          // var bod = JSON.parse(body);
+          // song1.push.apply(song1, bod['collection']);
+          callback(null, body);
+        })
+      },
+      sc21: function(callback){
+        request.get({
+          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=0&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+        },
+          function(error, response, body) {
+            console.log('sc21');
+            // var bod = JSON.parse(body);
+            // song1.push.apply(song1, bod['collection']);
+            callback(null, body);
+          })
 
-      var res2 = JSON.parse(results.sc2);
-      song1.push.apply(song1, res2['collection']);
+        // http.get("http://www.google.com", function(res){
+        //   console.log("google done");
+        //   callback(null, res.statusCode);
+        // })
 
-      var res3 = JSON.parse(results.sc3);
-      song1.push.apply(song1, res3['collection']);
+      },
+      sc22: function(callback){
+        request.get({
+          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=175&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+        },
+          function(error, response, body) {
+            console.log('sc22');
+            // var bod = JSON.parse(body);
+            // song1.push.apply(song1, bod['collection']);
+            callback(null, body);
+          })
+        },
+      sc23: function(callback){
+        request.get({
+          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=350&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+        },
+          function(error, response, body) {
+            console.log('sc23');
+            // var bod = JSON.parse(body);
+            // song1.push.apply(song1, bod['collection']);
+            callback(null, body);
+          })
+        },
+      sc24: function(callback){
+        request.get({
+          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=525&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+        },
+          function(error, response, body) {
+            console.log('sc24');
+            // var bod = JSON.parse(body);
+            // song1.push.apply(song1, bod['collection']);
+            callback(null, body);
+          })
+        },
+      sc25: function(callback){
+        request.get({
+          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=700&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+        },
+          function(error, response, body) {
+            console.log('sc25');
+            // var bod = JSON.parse(body);
+            // song1.push.apply(song1, bod['collection']);
+            callback(null, body);
+          })
+        },
+      sc26: function(callback){
+        request.get({
+          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=875&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+        },
+          function(error, response, body) {
+            console.log('sc26');
+            // var bod = JSON.parse(body);
+            // song1.push.apply(song1, bod['collection']);
+            callback(null, body);
+          })
+        },
+      sc27: function(callback){
+        request.get({
+          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=1050&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+        },
+          function(error, response, body) {
+            console.log('sc27');
+            // var bod = JSON.parse(body);
+            // song1.push.apply(song1, bod['collection']);
+            callback(null, body);
+          })
+        },
+        sc28: function(callback){
+          request.get({
+            url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=1225&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+          },
+            function(error, response, body) {
+              console.log('sc28');
+              // var bod = JSON.parse(body);
+              // song1.push.apply(song1, bod['collection']);
+              callback(null, body);
+            })
+          }
+    },
+    function(err, results) {
+      if(!err){
+        try {
+          var res11 = JSON.parse(results.sc11);
+          song1.push.apply(song1, res11['collection']);
+          console.log('pushed11');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope11');
+        }
 
-      var res4 = JSON.parse(results.sc4);
-      song1.push.apply(song1, res4['collection']);
+        try {
+          var res12 = JSON.parse(results.sc12);
+          song1.push.apply(song1, res12['collection']);
+          console.log('pushed12');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope12');
+        }
 
-      var res5 = JSON.parse(results.sc5);
-      song1.push.apply(song1, res5['collection']);
+        try {
+          var res13 = JSON.parse(results.sc13);
+          song1.push.apply(song1, res13['collection']);
+          console.log('pushed13');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope13');
+        }
 
-      var res6 = JSON.parse(results.sc6);
-      song1.push.apply(song1, res6['collection']);
+        try {
+          var res14 = JSON.parse(results.sc14);
+          song1.push.apply(song1, res14['collection']);
+          console.log('pushed14');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope14');
+        }
 
-      var res7 = JSON.parse(results.sc7);
-      song1.push.apply(song1, res7['collection']);
+        try {
+          var res15 = JSON.parse(results.sc15);
+          song1.push.apply(song1, res15['collection']);
+          console.log('pushed15');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope15');
+        }
 
-      var res8 = JSON.parse(results.sc8);
-      song1.push.apply(song1, res8['collection']);
+        try {
+          var res16 = JSON.parse(results.sc16);
+          song1.push.apply(song1, res16['collection']);
+          console.log('pushed16');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope16');
+        }
 
-    }else{
-      console.log(err);
-    }
-  }
-);
+        try {
+          var res17 = JSON.parse(results.sc17);
+          song1.push.apply(song1, res17['collection']);
+          console.log('pushed17');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope17');
+        }
 
-//     request.get({
-//       url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=0&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-//     },
-//       function(error, response, body) {
-//         var bod = JSON.parse(body);
-//         song1.push.apply(song1, bod['collection']);
-//       }),
-//       request.get({
-//         url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=175&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-//       },
-//         function(error, response, body) {
-//           var bod = JSON.parse(body);
-//           song1.push.apply(song1, bod['collection']);
-//         }),
-//         request.get({
-//           url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=350&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-//         },
-//           function(error, response, body) {
-//             var bod = JSON.parse(body);
-//             song1.push.apply(song1, bod['collection']);
-//           }),
-//         request.get({
-//           url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=525&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-//         },
-//           function(error, response, body) {
-//             var bod = JSON.parse(body);
-//             song1.push.apply(song1, bod['collection']);
-//           }),
-//         request.get({
-//           url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=700&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
-//         },
-//           function(error, response, body) {
-//             var bod = JSON.parse(body);
-//             song1.push.apply(song1, bod['collection']);
-//           }),
-//         request.get({
-//           url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=875&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
-//         },
-//           function(error, response, body) {
-//             var bod = JSON.parse(body);
-//             song1.push.apply(song1, bod['collection']);
-//           }),
-//         request.get({
-//           url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=1050&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
-//         },
-//           function(error, response, body) {
-//             var bod = JSON.parse(body);
-//             song1.push.apply(song1, bod['collection']);
-//           }),
-//         request.get({
-//           url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=175&offset=1225&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
-//         },
-//           function(error, response, body) {
-//             var bod = JSON.parse(body);
-//             song1.push.apply(song1, bod['collection']);
-//           }),
-//
-// //Song2 Calls
-//       request.get({
-//         url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=0&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-//       },
-//         function(error, response, body, dogbreath) {
-//           var bod = JSON.parse(body);
-//           song2.push.apply(song2, bod['collection']);
-//         }),
-//       request.get({
-//         url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=175&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-//       },
-//         function(error, response, body, dogbreath) {
-//           var bod = JSON.parse(body);
-//           song2.push.apply(song2, bod['collection']);
-//         }),
-//       request.get({
-//         url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=350&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-//       },
-//         function(error, response, body, dogbreath) {
-//           var bod = JSON.parse(body);
-//           song2.push.apply(song2, bod['collection']);
-//         }),
-//       request.get({
-//         url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=525&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
-//       },
-//         function(error, response, body, dogbreath) {
-//           var bod = JSON.parse(body);
-//           song2.push.apply(song2, bod['collection']);
-//         }),
-//       request.get({
-//         url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=700&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
-//       },
-//         function(error, response, body, dogbreath) {
-//           var bod = JSON.parse(body);
-//           song2.push.apply(song2, bod['collection']);
-//         }),
-//       request.get({
-//         url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=875&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
-//       },
-//         function(error, response, body, dogbreath) {
-//           var bod = JSON.parse(body);
-//           song2.push.apply(song2, bod['collection']);
-//         }),
-//       request.get({
-//         url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=1050&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
-//       },
-//         function(error, response, body, dogbreath) {
-//           var bod = JSON.parse(body);
-//           song2.push.apply(song2, bod['collection']);
-//         }),
-//       request.get({
-//         url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=175&offset=1225&client_id=c8b9faf87e3e5a145d75eff2e4ca898c?callback=?',
-//       },
-//         function(error, response, body, dogbreath) {
-//           var bod = JSON.parse(body);
-//           song2.push.apply(song2, bod['collection']);
-//         })
+        try {
+          var res18 = JSON.parse(results.sc18);
+          song1.push.apply(song1, res18['collection']);
+          console.log('pushed18');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope18');
+        }
 
-  playlistOps()
-})
+        try {
+          var res21 = JSON.parse(results.sc21);
+          song2.push.apply(song2, res21['collection']);
+          console.log('pushed21');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope21');
+        }
 
+        try {
+          var res22 = JSON.parse(results.sc22);
+          song2.push.apply(song2, res22['collection']);
+          console.log('pushed22');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope22');
+        }
+
+        try {
+          var res23 = JSON.parse(results.sc23);
+          song2.push.apply(song1, res23['collection']);
+          console.log('pushed23');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope23');
+        }
+
+        try {
+          var res24 = JSON.parse(results.sc24);
+          song2.push.apply(song2, res24['collection']);
+          console.log('pushed24');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope24');
+        }
+
+        try {
+          var res25 = JSON.parse(results.sc25);
+          song2.push.apply(song2, res25['collection']);
+          console.log('pushed25');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope25');
+        }
+
+        try {
+          var res26 = JSON.parse(results.sc26);
+          song2.push.apply(song2, res26['collection']);
+          console.log('pushed26');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope26');
+        }
+
+        try {
+          var res27 = JSON.parse(results.sc27);
+          song2.push.apply(song2, res27['collection']);
+          console.log('pushed27');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope27');
+        }
+
+        try {
+          var res28 = JSON.parse(results.sc28);
+          song2.push.apply(song2, res28['collection']);
+          console.log('pushed28');
+        }
+        catch(err) {
+          console.log(err);
+          console.log('nope28');
+        }
+
+        longest(song1,song2);
+        containingBoth(toCheck,toCheckAgainst);
+        res.json(200, {data: playlistsContainingBoth});
+
+
+      }else{
+        console.log(err);
+      }
+    })};
+
+    // playlistOps()
+
+    gatherSongs();
+  });
+// }
 
 
 
