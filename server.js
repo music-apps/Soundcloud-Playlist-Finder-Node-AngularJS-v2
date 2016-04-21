@@ -21,10 +21,6 @@ server.get('/find/:paramID1/:paramID2', function (req, res) {
   playlistsContainingBoth = [];
 
   function playlistOps() {
-    // setTimeout(function(){console.log(song1.length);},20000)
-    // setTimeout(function(){longest(song1,song2);},22000)
-    // setTimeout(function(){containingBoth(toCheck,toCheckAgainst);},24000)
-    // setTimeout(function(){res.json(200, {data: playlistsContainingBoth});},26000)
   }
 
   function containingBoth(toCheck, toCheckAgainst){
@@ -44,23 +40,8 @@ server.get('/find/:paramID1/:paramID2', function (req, res) {
          console.log(playlistsContainingBoth);
    }
 
-    //Check all the playlists in the to_check array against the to_check_against array
-    // function containingBoth(toCheck, toCheckAgainst){
-  //   for(var i=0;i<toCheck.length;i+=1){
-  //     for(var j=0;j<toCheckAgainst.length;j+=1){
-  //       if (toCheck[i]['uri'] === toCheckAgainst[j]['uri']) {
-  //         playlistsContainingBoth.push(toCheck[i]['uri']);
-  //         console.log('pushing');
-  //         console.log(toCheck[i]['uri']);
-  //         console.log(toCheckAgainst[j]['uri']);
-  //       }
-  //     }
-  //   }
-  //   console.log(playlistsContainingBoth);
-  // }
 
-
-  //Logic to check which collection of playlists is longer
+//Logic to check which collection of playlists is longer
 function longest(song1, song2){
   if (song1.length > song2.length) {
       toCheck = song1;
@@ -89,16 +70,8 @@ function gatherSongs(){
     },
       function(error, response, body) {
         console.log('sc1');
-        // var bod = JSON.parse(body);
-        // song1.push.apply(song1, bod['collection']);
         callback(null, body);
       })
-
-    // http.get("http://www.google.com", function(res){
-    //   console.log("google done");
-    //   callback(null, res.statusCode);
-    // })
-
   },
   sc12: function(callback){
     request.get({
@@ -106,8 +79,6 @@ function gatherSongs(){
     },
       function(error, response, body) {
         console.log('sc12');
-        // var bod = JSON.parse(body);
-        // song1.push.apply(song1, bod['collection']);
         callback(null, body);
       })
     },
@@ -117,8 +88,6 @@ function gatherSongs(){
     },
       function(error, response, body) {
         console.log('sc13');
-        // var bod = JSON.parse(body);
-        // song1.push.apply(song1, bod['collection']);
         callback(null, body);
       })
     },
@@ -128,8 +97,6 @@ function gatherSongs(){
     },
       function(error, response, body) {
         console.log('sc14');
-        // var bod = JSON.parse(body);
-        // song1.push.apply(song1, bod['collection']);
         callback(null, body);
       })
     },
@@ -139,8 +106,6 @@ function gatherSongs(){
     },
       function(error, response, body) {
         console.log('sc15');
-        // var bod = JSON.parse(body);
-        // song1.push.apply(song1, bod['collection']);
         callback(null, body);
       })
     },
@@ -150,8 +115,6 @@ function gatherSongs(){
     },
       function(error, response, body) {
         console.log('sc16');
-        // var bod = JSON.parse(body);
-        // song1.push.apply(song1, bod['collection']);
         callback(null, body);
       })
     },
@@ -161,8 +124,6 @@ function gatherSongs(){
     },
       function(error, response, body) {
         console.log('sc17');
-        // var bod = JSON.parse(body);
-        // song1.push.apply(song1, bod['collection']);
         callback(null, body);
       })
     },
@@ -172,8 +133,6 @@ function gatherSongs(){
       },
         function(error, response, body) {
           console.log('sc18');
-          // var bod = JSON.parse(body);
-          // song1.push.apply(song1, bod['collection']);
           callback(null, body);
         })
       },
@@ -183,16 +142,8 @@ function gatherSongs(){
         },
           function(error, response, body) {
             console.log('sc21');
-            // var bod = JSON.parse(body);
-            // song1.push.apply(song1, bod['collection']);
             callback(null, body);
           })
-
-        // http.get("http://www.google.com", function(res){
-        //   console.log("google done");
-        //   callback(null, res.statusCode);
-        // })
-
       },
       sc22: function(callback){
         request.get({
@@ -266,8 +217,6 @@ function gatherSongs(){
           },
             function(error, response, body) {
               console.log('sc28');
-              // var bod = JSON.parse(body);
-              // song1.push.apply(song1, bod['collection']);
               callback(null, body);
             })
           }
@@ -330,7 +279,6 @@ function gatherSongs(){
           console.log('pushed16');
         }
         catch(err) {
-          console.log(err);
           console.log('nope16');
         }
 
@@ -340,7 +288,6 @@ function gatherSongs(){
           console.log('pushed17');
         }
         catch(err) {
-          console.log(err);
           console.log('nope17');
         }
 
