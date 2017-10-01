@@ -66,7 +66,7 @@ function gatherSongs(){
   async.parallel({
   sc11: function(callback){
     request.get({
-      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=100&offset=0&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=70&offset=0&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
     },
       function(error, response, body) {
         console.log('sc1');
@@ -75,7 +75,7 @@ function gatherSongs(){
   },
   sc12: function(callback){
     request.get({
-      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=100&offset=100&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=70&offset=70&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
     },
       function(error, response, body) {
         console.log('sc12');
@@ -84,7 +84,7 @@ function gatherSongs(){
     },
   sc13: function(callback){
     request.get({
-      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=100&offset=200&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=70&offset=140&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
     },
       function(error, response, body) {
         console.log('sc13');
@@ -93,7 +93,7 @@ function gatherSongs(){
     },
   sc14: function(callback){
     request.get({
-      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=100&offset=300&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=70&offset=210&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
     },
       function(error, response, body) {
         console.log('sc14');
@@ -102,7 +102,7 @@ function gatherSongs(){
     },
   sc15: function(callback){
     request.get({
-      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=100&offset=400&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=70&offset=280&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
     },
       function(error, response, body) {
         console.log('sc15');
@@ -111,7 +111,7 @@ function gatherSongs(){
     },
   sc16: function(callback){
     request.get({
-      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=100&offset=500&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=70&offset=350&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
     },
       function(error, response, body) {
         console.log('sc16');
@@ -120,7 +120,7 @@ function gatherSongs(){
     },
   sc17: function(callback){
     request.get({
-      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=100&offset=600&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+      url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=70&offset=420&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
     },
       function(error, response, body) {
         console.log('sc17');
@@ -129,7 +129,7 @@ function gatherSongs(){
     },
     sc18: function(callback){
       request.get({
-        url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=100&offset=700&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+        url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID1+'/playlists?limit=70&offset=490&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
       },
         function(error, response, body) {
           console.log('sc18');
@@ -138,7 +138,7 @@ function gatherSongs(){
       },
       sc21: function(callback){
         request.get({
-          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=100&offset=0&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=70&offset=0&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
         },
           function(error, response, body) {
             console.log('sc21');
@@ -147,7 +147,7 @@ function gatherSongs(){
       },
       sc22: function(callback){
         request.get({
-          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=100&offset=100&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=70&offset=70&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
         },
           function(error, response, body) {
             console.log('sc22');
@@ -158,7 +158,7 @@ function gatherSongs(){
         },
       sc23: function(callback){
         request.get({
-          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=100&offset=200&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=70&offset=140&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
         },
           function(error, response, body) {
             console.log('sc23');
@@ -169,7 +169,7 @@ function gatherSongs(){
         },
       sc24: function(callback){
         request.get({
-          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=100&offset=300&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=70&offset=210&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
         },
           function(error, response, body) {
             console.log('sc24');
@@ -180,7 +180,7 @@ function gatherSongs(){
         },
       sc25: function(callback){
         request.get({
-          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=100&offset=400&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=70&offset=280&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
         },
           function(error, response, body) {
             console.log('sc25');
@@ -191,7 +191,7 @@ function gatherSongs(){
         },
       sc26: function(callback){
         request.get({
-          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=100&offset=500&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=70&offset=350&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
         },
           function(error, response, body) {
             console.log('sc26');
@@ -202,7 +202,7 @@ function gatherSongs(){
         },
       sc27: function(callback){
         request.get({
-          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=100&offset=600&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+          url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=70&offset=420&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
         },
           function(error, response, body) {
             console.log('sc27');
@@ -213,7 +213,7 @@ function gatherSongs(){
         },
         sc28: function(callback){
           request.get({
-            url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=100&offset=700&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
+            url: 'https://api-v2.soundcloud.com/tracks/'+req.params.paramID2+'/playlists?limit=70&offset=490&client_id=c8b9faf87e3e5a145d75eff2e4ca898c',
           },
             function(error, response, body) {
               console.log('sc28');
