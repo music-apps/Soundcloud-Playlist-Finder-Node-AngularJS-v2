@@ -1,6 +1,6 @@
 # Soundcloud Playlist Finder v2
 
-# Demo: soundcloudplaylistfinder.herokuapp.com
+# [Demo](soundcloudplaylistfinder.herokuapp.com)
 
 ## About:
 Soundcloud Playlist Finder allows you to select two songs and find playlists that contain both of those songs.
